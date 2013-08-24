@@ -12975,7 +12975,7 @@ _25:
 	dd	_bbObjectReserved
 	dd	_bbObjectReserved
 _540:
-	db	"F:/Dropbox/bmax/NEWRPG/GLOBALS.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/GLOBALS.bmx",0
 	align	4
 _539:
 	dd	_540
@@ -14133,7 +14133,7 @@ _542:
 	dd	84
 	dd	1
 _545:
-	db	"F:/Dropbox/bmax/NEWRPG/GlobalsMain.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/GlobalsMain.bmx",0
 	align	4
 _544:
 	dd	_545
@@ -14558,7 +14558,7 @@ _756:
 	dd	0
 	dd	0
 _718:
-	db	"F:/Dropbox/bmax/NEWRPG/TNetworkPlayer.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TNetworkPlayer.bmx",0
 	align	4
 _717:
 	dd	_718
@@ -15027,7 +15027,7 @@ _1111:
 	dd	0
 	dd	0
 _1077:
-	db	"F:/Dropbox/bmax/NEWRPG/TNetworkMonster.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TNetworkMonster.bmx",0
 	align	4
 _1076:
 	dd	_1077
@@ -15584,7 +15584,7 @@ _1464:
 	dd	0
 	dd	0
 _1448:
-	db	"F:/Dropbox/bmax/NEWRPG/TEntity.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TEntity.bmx",0
 	align	4
 _1447:
 	dd	_1448
@@ -15732,7 +15732,7 @@ _1561:
 	dd	0
 	dd	0
 _1509:
-	db	"F:/Dropbox/bmax/NEWRPG/NetSlot.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/NetSlot.bmx",0
 	align	4
 _1508:
 	dd	_1509
@@ -15827,7 +15827,7 @@ _1579:
 	dd	0
 	dd	0
 _1566:
-	db	"F:/Dropbox/bmax/NEWRPG/TTarget.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TTarget.bmx",0
 	align	4
 _1565:
 	dd	_1566
@@ -16037,7 +16037,7 @@ _1664:
 	dd	_1665
 	dd	0
 _1658:
-	db	"F:/Dropbox/bmax/NEWRPG/Functions.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/Functions.bmx",0
 	align	4
 _1657:
 	dd	_1658
@@ -16723,7 +16723,7 @@ _1854:
 	dd	-36
 	dd	0
 _1817:
-	db	"F:/Dropbox/bmax/NEWRPG/TSpawnPoint.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TSpawnPoint.bmx",0
 	align	4
 _1816:
 	dd	_1817
@@ -17086,7 +17086,7 @@ _2062:
 	dd	-44
 	dd	0
 _1958:
-	db	"F:/Dropbox/bmax/NEWRPG/TItem.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TItem.bmx",0
 	align	4
 _1957:
 	dd	_1958
@@ -17725,7 +17725,7 @@ _2253:
 	dd	-8
 	dd	0
 _2241:
-	db	"F:/Dropbox/bmax/NEWRPG/TItemEffect.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TItemEffect.bmx",0
 	align	4
 _2240:
 	dd	_2241
@@ -17836,7 +17836,7 @@ _2289:
 	dd	0
 	dd	0
 _2269:
-	db	"F:/Dropbox/bmax/NEWRPG/TItemsWindow.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TItemsWindow.bmx",0
 	align	4
 _2268:
 	dd	_2269
@@ -18949,7 +18949,7 @@ _2850:
 	dd	0
 	dd	0
 _2815:
-	db	"F:/Dropbox/bmax/NEWRPG/TWindow.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TWindow.bmx",0
 	align	4
 _2814:
 	dd	_2815
@@ -19521,7 +19521,7 @@ _3183:
 	dd	0
 	dd	0
 _3163:
-	db	"F:/Dropbox/bmax/NEWRPG/TInventoriesWindow.bmx",0
+	db	"F:/Dropbox/bmax/NEWRPG/NEWRPG/TInventoriesWindow.bmx",0
 	align	4
 _3162:
 	dd	_3163
