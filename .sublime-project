@@ -1,7 +1,9 @@
 {
-    "folders": [
-        {
-            "path": "f:\\dropbox\\bmax\\newrpg"
-        }
-    ]
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "f:\\dropbox\\bmax\\newrpg"
+		}
+	]
 }

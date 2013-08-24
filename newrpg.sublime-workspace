@@ -8,18 +8,10 @@
 	"buffers":
 	[
 		{
-			"file": "/G/Users/PackegerX/floobits/welcome.md",
+			"file": "/f/dropbox/bmax/newrpg/Functions.bmx",
 			"settings":
 			{
-				"buffer_size": 137,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "/f/dropbox/bmax/newrpg/Main.bmx.bak",
-			"settings":
-			{
-				"buffer_size": 8775,
+				"buffer_size": 2537,
 				"line_ending": "Windows"
 			}
 		}
@@ -58,8 +50,13 @@
 	},
 	"file_history":
 	[
-		"/G/Users/PackegerX/floobits/msgs.floobits.log",
+		"/f/dropbox/bmax/newrpg/playername.txt",
 		"/G/Users/PackegerX/.floorc",
+		"/F/Dropbox/bmax/test",
+		"/G/Users/PackegerX/floobits/welcome.md",
+		"/f/dropbox/bmax/newrpg/TWindow.bmx",
+		"/G/Users/PackegerX/Desktop/CA Builder (biped - Rigged Skeleton).obj",
+		"/G/Users/PackegerX/floobits/msgs.floobits.log",
 		"/G/Users/PackegerX/AppData/Roaming/Sublime Text 3/Packages/User/Package Control.sublime-settings",
 		"/G/Users/PackegerX/Desktop/Box1.x",
 		"/G/Users/PackegerX/AppData/Roaming/Sublime Text 3/Packages/Package Control/Package Control.sublime-settings",
@@ -105,56 +102,29 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "/G/Users/PackegerX/floobits/welcome.md",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 137,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								137,
-								20
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/Markdown/Markdown.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "/f/dropbox/bmax/newrpg/Main.bmx.bak",
+					"file": "/f/dropbox/bmax/newrpg/Functions.bmx",
 					"semi_transient": true,
 					"settings":
 					{
-						"buffer_size": 8775,
+						"buffer_size": 2537,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								155,
-								178
+								195,
+								195
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/Text/Plain text.tmLanguage",
+							"syntax": "Packages/blitzmax/BlitzMax.tmLanguage",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
@@ -172,7 +142,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
