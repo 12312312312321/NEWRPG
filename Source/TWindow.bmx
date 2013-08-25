@@ -108,7 +108,7 @@ Type TWindow
 		End If
 	End Method
 	Method checkclick()
-		If CheckMouse(x, y, width, height) And z <> 0 And xMouseDown(xMOUSE_LEFT) Then
+		If CheckMouse(x, y, width, height) And z <> 0 And xMouseDown(xMOUSE_LEFT) And MouseState = MOUSE_NOTHING Then
 			SetForegroundWindow()
 		End If
 	End Method
@@ -118,10 +118,7 @@ Type TWindow
 		For w = EachIn Windows
 			If w = Self Then
 				z = 0
-			End If
-		Next
-		For w = EachIn Windows
-			If w <> Self Then
+			Else
 				w.z = k
 				k = k + 1
 			End If
