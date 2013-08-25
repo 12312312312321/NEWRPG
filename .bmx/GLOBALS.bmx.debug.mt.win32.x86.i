@@ -120,6 +120,7 @@ MouseUp%()="bb_MouseUp"
 CheckMouse%(x%,y%,width%=0,height%=0)="bb_CheckMouse"
 Dist!(p1:TEntity,p2:TEntity)="bb_Dist"
 DistObj!(p1%,p2%)="bb_DistObj"
+SortWindows%()="bb_SortWindows"
 TSpawnPoint^TEntity{
 .MonsterID%&
 .MonsterCount%&
@@ -185,6 +186,8 @@ TWindow^brl.blitz.Object{
 -draw%()="_bb_TWindow_draw"
 -DrawMouseHint%()="_bb_TWindow_DrawMouseHint"
 -Update%()="_bb_TWindow_Update"
+-checkclick%()="_bb_TWindow_checkclick"
+-SetForegroundWindow%()="_bb_TWindow_SetForegroundWindow"
 }="bb_TWindow"
 TManyInventories^brl.linkedlist.TList{
 -New%()="_bb_TManyInventories_New"
@@ -228,6 +231,7 @@ TYPE_FAV_INVENTORY%&=mem("bb_TYPE_FAV_INVENTORY")
 COUNT_ITEM_EFFECTS%&=mem("bb_COUNT_ITEM_EFFECTS")
 host:brl.gnet.TGNetHost&=mem:p("bb_host")
 port%&=mem("bb_port")
+portSocket%&=mem("bb_portSocket")
 addressClient:brl.linkedlist.TList&=mem:p("bb_addressClient")
 timeout_ms%&=mem("bb_timeout_ms")
 isServer%&=mem("bb_isServer")
@@ -254,3 +258,4 @@ AllInventories:TManyInventories&=mem:p("bb_AllInventories")
 AllInventoriesWindow:TInventoriesWindow&=mem:p("bb_AllInventoriesWindow")
 menu_btn%&=mem("bb_menu_btn")
 menu_btn_active%&=mem("bb_menu_btn_active")
+Sock:brl.socket.TSocket&=mem:p("bb_Sock")

@@ -24,25 +24,21 @@ Type TWindow
 		If winmoving = 1 Then
 			x = _mx - width / 2
 			y = _my
-			Local w:TWindow = Null, k:Int = 0
-			For w = EachIn Windows
-				If w = Self Then
-					z = 0
-				End If
-			Next
 			MouseState = MOUSE_MOVING
 		End If
 		If MouseUp() Then
 			winmoving = 0
 			MouseState = MOUSE_NOTHING
 		End If
-		If xMouseDown(xMOUSE_LEFT) And CheckMouse(x, y, width, elementheight) And MouseState = MOUSE_NOTHING Then
+		If xMouseDown(xMOUSE_LEFT) And CheckMouse(x, y, width, elementheight) And z = 0 And MouseState = MOUSE_NOTHING Then
 			winmoving = 1
+			SetForegroundWindow()
 		End If
 	End Method
 	Method Resize()
 		If xMouseDown(xMOUSE_LEFT) And CheckMouse(x + width - 5, y + height - 5, 5, 5) And MouseState = MOUSE_NOTHING Then
 			winresizing = 1
+			SetForegroundWindow()
 		End If
 		If MouseUp() Then
 			winresizing = 0
@@ -60,6 +56,7 @@ Type TWindow
 	End Method
 	Method close()
 		If xMouseDown(xMOUSE_LEFT) And CheckMouse(x, y + height - elementheight, elementheight, elementheight) and MouseState = MOUSE_NOTHING  Then
+			SetForegroundWindow()
 			winmoving = 0
 			winresizing = 0
 			hidden = 1
@@ -103,10 +100,32 @@ Type TWindow
 	End Method
 	Method Update()
 		If hidden = 0 Then
+			checkClick()
 			Move()
 			Resize()
 			draw()
 			close()
 		End If
+	End Method
+	Method checkclick()
+		If CheckMouse(x, y, width, height) And z <> 0 And xMouseDown(xMOUSE_LEFT) Then
+			SetForegroundWindow()
+		End If
+	End Method
+	Method SetForegroundWindow()
+		Local w:TWindow
+		Local k:Int = 1
+		For w = EachIn Windows
+			If w = Self Then
+				z = 0
+			End If
+		Next
+		For w = EachIn Windows
+			If w <> Self Then
+				w.z = k
+				k = k + 1
+			End If
+		Next
+		SortWindows()
 	End Method
 End Type

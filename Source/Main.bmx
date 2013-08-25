@@ -67,6 +67,12 @@ Global ItemWindow:TItemsWindow = New TItemsWindow
 ItemWindow.SetInventory(Player.Inventory)
 
 Local LocalWindow:TWindow
+
+If isServer Then
+	Sock = CreateTCPSocket()
+	BindSocket(sock, portSocket)
+	SocketListen(sock)
+End If
 'Главный цикл
 Repeat
 	'обновление управления
@@ -133,22 +139,6 @@ Repeat
 Forever
 If isServer Then Player.Remove()
 ENDGAME()
-
-Function sortwindows()
-	Local win:TWindow
-	Local list:TList = New TList
-	Local count:Int = windows.Count()
-	Local i:Int
-	Local minwin:TWindow
-	For i = 1 To count
-		For win = EachIn Windows
-			If minwin = Null Or minwin.z > win.z Then minwin = win
-		Next
-		list.AddLast(minwin)
-		Windows.Remove(minwin)
-	Next
-	Windows = list
-End Function
 
 Function DrawGUI()
 	Local p:TNetworkPlayer

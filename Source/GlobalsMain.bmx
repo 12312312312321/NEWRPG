@@ -46,6 +46,7 @@ Global COUNT_ITEM_EFFECTS = 2
 '=================Host or Client===============
 Global host:TGNetHost = CreateGNetHost()
 Global port = 8086
+Global portSocket = 8087
 Global addressClient:TList
 Global timeout_ms = 3000
 Global isServer:Int
@@ -84,5 +85,5 @@ Global AllInventoriesWindow:TInventoriesWindow = New TInventoriesWindow
 '================== Images главное меню ========================
 Global menu_btn = xloadimage(ImageDir + "mainmenu_bt_stand.png")
 Global menu_btn_active = xloadimage(ImageDir + "mainmenu_bt_active.png")
-
+Global Sock:TSocket
 

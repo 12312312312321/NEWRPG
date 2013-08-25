@@ -1,6 +1,9 @@
 ﻿'This BMX file was edited with BLIde ( http://www.blide.org )
 Function ENDGAME()
 	CloseGNetHost(host)
+	If isServer Then
+		Sock.Close()
+	End If
 	MySQL.Close()
 	xDeinitDraw()
 	End
@@ -130,4 +133,21 @@ End Function
 
 Function DistObj:Double(p1:Int, p2:Int)
 	Return Sqr((xEntityX(p2) - xEntityX(p1)) ^ 2 + (xEntityY(p2) - xEntityY(p1)) ^ 2 + (xEntityZ(p2) - xEntityZ(p1)) ^ 2)
+End Function
+
+Function SortWindows()
+	Local list:TList = New TList
+	Local w:TWindow
+	Local count = windows.count()
+	Local k:Int = count - 1
+	Local i
+	For i = 1 To count
+		For w = EachIn Windows
+			If w.z = k Then
+				list.AddLast(w)
+				k = k - 1
+			End If
+		Next
+	Next
+	Windows = list
 End Function

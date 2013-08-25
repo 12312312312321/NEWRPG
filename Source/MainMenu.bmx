@@ -8,8 +8,8 @@ Function MainMenuCycle()
 	Local joinServersCounter:Int = 0
 	Local InputActive:Int = 0
 	'================== socket, определение IP
-	Local sock:TSocket = CreateTCPSocket()
-	BindSocket(sock, 8086)
+	Sock = CreateTCPSocket()
+	BindSocket(sock, portSocket)
 	SocketListen(sock)
 	Local addressHost:String = DottedIP(HostIp(HostName(SocketLocalIP(sock))))
 	sock.Close()
