@@ -75,11 +75,14 @@ xAppWindowFrame (0)
 xAppTitle ("New RPG 1.0")
 xInitDraw()
 xGraphics3D ()
-Global ItemImg[] = [xLoadImage("image/item_0.png"), xLoadImage("image/item_1.png"), xLoadImage("image/item_2.png")]
+Global ImageDir:String = "Data/image/"
+Global ModelsDir:String = "Data/models/"
+Global UserConfigDir:String = "User/config/"
+Global ItemImg[] = [xLoadImage(ImageDir + "item_0.png"), xLoadImage(ImageDir + "item_1.png"), xLoadImage(ImageDir + "item_2.png")]
 Global AllInventories:TManyInventories = New TManyInventories
 Global AllInventoriesWindow:TInventoriesWindow = New TInventoriesWindow
 '================== Images главное меню ========================
-Global menu_btn = xloadimage("image/mainmenu_bt_stand.png")
-Global menu_btn_active = xloadimage("image/mainmenu_bt_active.png")
+Global menu_btn = xloadimage(ImageDir + "mainmenu_bt_stand.png")
+Global menu_btn_active = xloadimage(ImageDir + "mainmenu_bt_active.png")
 
 

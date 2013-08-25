@@ -1,18 +1,5 @@
 ﻿'This BMX file was edited with BLIde ( http://www.blide.org )
 '============================================================ MAIN MENU ================================================================
-Function CheckServerList:TList()
-	Local list:TList = New TList
-	Local f:TStream = ReadFile("serverlist.txt")
-	If Not f Then
-		Notify("Servers List not found.")
-		ENDGAME()
-	End If
-	While Not f.Eof()
-		list.AddLast(trim(f.ReadLine()))
-	Wend
-	CloseFile(f)
-	Return list
-End Function
 'MainMenu главный цикл
 Function MainMenuCycle()
 	Local success:Int, sucess_q:Int
@@ -137,22 +124,4 @@ Function MainMenuCycle()
 		xFlip
 	Forever
 	Return
-End Function
-'Попытка соединения с сервером
-Function TryConnect:Int(s:String)
-	Local success, sucess_q
-	success = GNetConnect(host, s, port, timeout_ms)
-	If Not success Then
-		Repeat
-			sucess_q = Confirm("Not avaliable. Reconnect?")
-			If sucess_q Then
-				success = GNetConnect(host, s, port, timeout_ms)
-			Else
-				Return False
-			End If
-			If success Then Return True
-		Forever
-	Else
-		Return True
-	End If
 End Function

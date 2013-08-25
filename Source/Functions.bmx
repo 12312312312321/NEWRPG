@@ -1,4 +1,4 @@
-'This BMX file was edited with BLIde ( http://www.blide.org )
+﻿'This BMX file was edited with BLIde ( http://www.blide.org )
 Function ENDGAME()
 	CloseGNetHost(host)
 	MySQL.Close()
@@ -6,8 +6,41 @@ Function ENDGAME()
 	End
 End Function
 
+Function CheckServerList:TList()
+	Local list:TList = New TList
+	Local f:TStream = ReadFile(UserConfigDir + "serverlist.txt")
+	If Not f Then
+		Notify("Servers List not found.")
+		ENDGAME()
+	End If
+	While Not f.Eof()
+		list.AddLast(trim(f.ReadLine()))
+	Wend
+	CloseFile(f)
+	Return list
+End Function
+
+'Попытка соединения с сервером
+Function TryConnect:Int(s:String)
+	Local success, sucess_q
+	success = GNetConnect(host, s, port, timeout_ms)
+	If Not success Then
+		Repeat
+			sucess_q = Confirm("Not avaliable. Reconnect?")
+			If sucess_q Then
+				success = GNetConnect(host, s, port, timeout_ms)
+			Else
+				Return False
+			End If
+			If success Then Return True
+		Forever
+	Else
+		Return True
+	End If
+End Function
+
 Function LoadPlayerName()
-	Local f:TStream = ReadFile("playername.txt")
+	Local f:TStream = ReadFile(UserConfigDir + "playername.txt")
 	If Not f Then
 		WritePlayerName("Player")
 		Return
@@ -17,7 +50,7 @@ Function LoadPlayerName()
 	Return
 End Function
 Function WritePlayerName(str:String)
-	Local f:TStream = WriteFile("playername.txt")
+	Local f:TStream = WriteFile(UserConfigDir + "playername.txt")
 	WriteLine(f, str)
 	CloseFile(f)
 	PlayerName = str

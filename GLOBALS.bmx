@@ -88,22 +88,22 @@ Public
 
 '------------------------------------------------------------------------------------------------------------------------------------------------------
 '#Region &H03 Includes
-Include "GlobalsMain.bmx"
-Include "TNetworkPlayer.bmx"
-Include "TNetworkMonster.bmx"
-Include "TEntity.bmx"
-Include "TNetworkEntity.bmx"
-Include "NetSlot.bmx"
-Include "TInventory.bmx"
-Include "TTarget.bmx"
-Include "Functions.bmx"
-Include "TSpawnPoint.bmx"
-Include "TItem.bmx"
-Include "TItemEffect.bmx"
-Include "TItemsWindow.bmx"
-Include "TWindow.bmx"
-Include "TManyInventories.bmx"
-Include "TInventoriesWindow.bmx"
+Include "Source\GlobalsMain.bmx"
+Include "Source\TNetworkPlayer.bmx"
+Include "Source\TNetworkMonster.bmx"
+Include "Source\TEntity.bmx"
+Include "Source\TNetworkEntity.bmx"
+Include "Source\NetSlot.bmx"
+Include "Source\TInventory.bmx"
+Include "Source\TTarget.bmx"
+Include "Source\Functions.bmx"
+Include "Source\TSpawnPoint.bmx"
+Include "Source\TItem.bmx"
+Include "Source\TItemEffect.bmx"
+Include "Source\TItemsWindow.bmx"
+Include "Source\TWindow.bmx"
+Include "Source\TManyInventories.bmx"
+Include "Source\TInventoriesWindow.bmx"
  
 '#EndRegion &H03
 

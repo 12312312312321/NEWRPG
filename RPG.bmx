@@ -87,8 +87,8 @@ Public
 
 '------------------------------------------------------------------------------------------------------------------------------------------------------
 '#Region &H03 Includes
-Include "Main.bmx"
-Include "MainMenu.bmx"
+Include "Source\Main.bmx"
+Include "Source\MainMenu.bmx"
  
 '#EndRegion &H03
 
