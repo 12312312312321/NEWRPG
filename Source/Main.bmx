@@ -3,14 +3,6 @@
 '=========================INITIALIZATION====================
 LoadPlayerName()
 
-xSetBlend(FI_ALPHABLEND)
-font = xLoadFont("Book Antiqua", 12)
-xSetFont(font)
-'load mesh
-PlayerMesh = xLoadAnimMesh(ModelsDir + "batman.b3d")
-MonsterMesh = xLoadMesh(ModelsDir + "skelet2.b3d")
-xHideEntity(PlayerMesh)
-xHideEntity(MonsterMesh)
 'xExtractAnimSeq(PlayerMesh, 1, 1, 1)
 'xExtractAnimSeq(PlayerMesh, 2, 13, 2)
 
@@ -50,23 +42,12 @@ Local c:Int
 ground = xCreateCube()
 xScaleEntity (ground, 1000, 1, 1000)
 xPositionEntity (ground, 0, 0, 0)
-xEntityPickMode(ground, 1)
+xEntityPickMode(ground, PICK_BOX)
 xEntityType(ground, TYPE_GROUND, True)
 xEntityAddBoxShape(ground, 0)
 
 'Стартовая точка
 c = xCreateCone()
-
-'Запоминание координат мыши в момент нажатия правой кнопки
-Local mouseCameraX:Int, mouseCameraY:Int
-'Скорость поворота камеры
-Local cameraTurnSpeed:Double = 0
-
-'===Инвентарь
-Global ItemWindow:TItemsWindow = New TItemsWindow
-ItemWindow.SetInventory(Player.Inventory)
-
-Local LocalWindow:TWindow
 
 If isServer Then
 	Sock = CreateTCPSocket()
@@ -81,29 +62,11 @@ Repeat
 		Local sucess_q = Confirm("Хотите выйти?")
 		If sucess_q Then Exit
 	EndIf
-	If xMouseHit(xMOUSE_MIDDLE) And isServer = True Then
-		Local spt:TSpawnPoint = TSpawnPoint.Create(1, Rand(2, 5), Player.X, Player.Y + 1, Player.Z)
-	EndIf
-	If xMouseHit(xMOUSE_LEFT) Then
-		If ItemWindow.CanClick() Then
-			Player.T.Location()
-			xAnimate(Player.obj, 1)
-		End If
+	CheckMouseControl()
+	If xKeyDown(xKEY_O) Then
+		Local inv:TInventory = FindMainInventory()
+		TItem.Create(ITEM_PACKET, inv, 1, 1, Rand(0, 4))
 	End If
-	If xMouseHit(xMOUSE_RIGHT) Then
-		If ItemWindow.CanClick() Then
-			mouseCameraX = xMouseX()
-			mouseCameraY = xMouseY()
-		End If
-	End If
-	cameraTurnSpeed = -xMouseXSpeed()
-	If xMouseDown(xMOUSE_RIGHT) Then
-		If ItemWindow.CanClick() Then
-			xTurnEntity(Player.camerapivot, 0, cameraTurnSpeed, 0)
-			xMoveMouse (mouseCameraX, mouseCameraY)
-		End If
-	End If
-	If xKeyDown(xKEY_O) Then TItem.Create(ITEM_PACKET, Player.Inventory, 1, 1, Rand(0, 4))
 	If xKeyHit(xKEY_I) Then AllInventoriesWindow.hidden = Not AllInventoriesWindow.hidden
 	If xKeyHit(xKEY_P) Then _AddFavInventory()
 	If xKeyHit(xKEY_F1) Then DebugStop()
@@ -129,13 +92,7 @@ Repeat
 
 	'рисование инвентаря
 	DrawGUI()
-	'sortwindows()
-	For LocalWindow = EachIn Windows
-		LocalWindow.Update()
-	Next
-	If MOUSE_ITEM_DRAG Then
-		DrawItemPic(MOUSE_ITEM_DRAG, _mx, _my)
-	End If
+
 	'вывод на экран
 	xFlip()
 Forever
@@ -144,11 +101,18 @@ ENDGAME()
 
 Function DrawGUI()
 	Local p:TNetworkPlayer
+	Local LocalWindow:TWindow
 	For p = EachIn NetPlayersList
 		xCameraProject(cam, p.X, p.Y + 1, p.Z)
 		xColor 255, 255, 255
 		xText xProjectedX(), xProjectedY(), p.Name
 	Next
+	For LocalWindow = EachIn Windows
+		LocalWindow.Update()
+	Next
+	If MOUSE_ITEM_DRAG Then
+		DrawItemPic(MOUSE_ITEM_DRAG, _mx, _my)
+	End If
 End Function
 
 Function UpdateToGnet()

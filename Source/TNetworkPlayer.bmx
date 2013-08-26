@@ -1,9 +1,9 @@
-'This BMX file was edited with BLIde ( http://www.blide.org )
+﻿'This BMX file was edited with BLIde ( http://www.blide.org )
 Rem
 	bbdoc:Undocumented type
 End Rem
 Type TNetworkPlayer Extends TNetworkEntity
-	Field Inventory:TInventory
+	Field AllInventories:TManyInventories
 	Field MP:Double
 	Field Experience:Double
 	Field CameraPivot:Int
@@ -17,8 +17,7 @@ Type TNetworkPlayer Extends TNetworkEntity
 		xEntityColor(obj, 0, 255, 0)
 		xEntityType(obj, TYPE_PLAYER, True)
 		'xEntityAddCapsuleShape(obj, 1)
-		Inventory = New TInventory
-		Inventory.IType = TYPE_MAIN_INVENTORY
+		AllInventories = New TManyInventories
 		T = New TTarget
 		Position(0, 1, 0)
 		HP = 100
@@ -38,6 +37,8 @@ Type TNetworkPlayer Extends TNetworkEntity
 			NP.NetID.SetInt(NS.TypeEntity, TYPE_PLAYER)
 			NP.NetID.SetString(NS.PlayerName, PlayerName)
 			NP.Name = PlayerName
+			'===Инвентарь
+			TItemsWindow.Create(TYPE_MAIN_INVENTORY, NP)
 		Else
 			If NetObject = Null Then
 				Notify("Net object (PLAYER) is NULL.")
@@ -48,13 +49,11 @@ Type TNetworkPlayer Extends TNetworkEntity
 		End If
 		Return NP
 	End Function
-	
 	Method Remove()
 		If isNet = 0 Then
 			CloseGNetObject(NetID)
 			MYSQL_DELETE(PlayerName)
 		End If
-		Inventory = Null
 		CameraPivot = Null
 		xFreeEntity(obj)
 		NetPlayersList.Remove(Self)
@@ -112,5 +111,4 @@ Type TNetworkPlayer Extends TNetworkEntity
 		'xText (5, 20, "x" + X + " y" + Y + " z" + Z)
 		'xText (5, 40, "netid " + PlayerName + " isnet=" + isNet)
 	End Method
-	
 End Type

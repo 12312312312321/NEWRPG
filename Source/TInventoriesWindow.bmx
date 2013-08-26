@@ -14,7 +14,7 @@ Type TInventoriesWindow Extends TWindow
 		Super.draw()
 		Local inv:TItemsWindow
 		Local j:Int = 0
-		For inv = EachIn AllInventories
+		For inv = EachIn Player.AllInventories
 			xColor(255, 255, 0)
 			xResizeImage(ItemImg[ITEM_FAV_INVENTORY], elementheight, elementheight)
 			Local i:Int = x + j Mod ((width - spacewidth * 2) / elementheight)* elementheight + spacewidth
@@ -44,7 +44,7 @@ Type TInventoriesWindow Extends TWindow
 			text = "Additional Inventory"
 		End If
 		xColor (0, 255, 0)
-		xRect(_mx, _my, elementheight * 5, 17, True)
+		xRect(_mx, _my, elementheight * 7, 19, True)
 		xColor (0, 0, 0)
 		xText(_mx + 5, _my, text)
 	End Method

@@ -15,7 +15,9 @@ Type TNetworkMonster Extends TNetworkEntity
 		obj = xCopyMesh(MonsterMesh)
 		xEntityColor(obj, 255, 0, 255)
 		xEntityType(obj, TYPE_MONSTER, True)
-		xEntityAddBoxShape(obj, 1)
+		xEntityRadius(obj, 1, 1)
+		xEntityPickMode(obj, PICK_SPHERE)
+		'xEntityAddBoxShape(obj, 1)
 		'xEntityAddCapsuleShape(obj, 1,)
 		StartObj = xCreatePivot()
 		AgroRange = 5.0

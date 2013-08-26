@@ -112,6 +112,9 @@ Type TWindow
 			SetForegroundWindow()
 		End If
 	End Method
+	Method CanClick:Int()
+		Return Not CheckMouse(x, y, width, height) Or hidden = True
+	End Method
 	Method SetForegroundWindow()
 		Local w:TWindow
 		Local k:Int = 1

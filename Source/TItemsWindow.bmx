@@ -13,15 +13,17 @@ Type TItemsWindow Extends TWindow
 		height = elementheight * 15 + spacewidth * 2 + elementheight
 		windowbordersize = 2
 	End Method
-	Method SetInventory(i:TInventory)
-		Inventory = i
-		AllInventories.AddLast(Self)
-		If i.IType = TYPE_MAIN_INVENTORY Then
-			title = "Main Inventory"
-		Else If i.IType = TYPE_FAV_INVENTORY Then
-			title = "Additional Inventory"
+	Function Create:TItemsWindow(itype:Int, P:TNetworkPlayer)
+		Local newi:TItemsWindow = New TItemsWindow
+		newi.Inventory = TInventory.Create(itype)
+		If itype = TYPE_MAIN_INVENTORY Then
+			newi.title = "Main Inventory"
+		ElseIf itype = TYPE_FAV_INVENTORY Then
+			newi.title = "Additional Inventory"
 		End If
-	End Method
+		P.AllInventories.AddLast(newi)
+		Return newi
+	End Function
 	Method Draw()
 		Super.draw()
 		'прямоугольник внутри окна где предметы отображаются
@@ -159,7 +161,4 @@ Type TItemsWindow Extends TWindow
 		Local StrTmp:String[] = Str.Split(Chr(10))
 	 	Return StrTmp.Length
 	End Function
-	Method CanClick:Int()
-		Return Not CheckMouse(Self.x, y, width, height) Or hidden = True
-	End Method
 End Type

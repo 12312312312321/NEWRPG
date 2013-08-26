@@ -29,7 +29,7 @@ import pub.freeprocess
 import pub.glew
 import pub.macos
 TNetworkPlayer^TNetworkEntity{
-.Inventory:TInventory&
+.AllInventories:TManyInventories&
 .MP!&
 .Experience!&
 .CameraPivot%&
@@ -46,6 +46,7 @@ TNetworkPlayer^TNetworkEntity{
 -MoveToTarget%()="_bb_TNetworkPlayer_MoveToTarget"
 -Debug1%()="_bb_TNetworkPlayer_Debug1"
 }="bb_TNetworkPlayer"
+FindMainInventory:TInventory()="bb_FindMainInventory"
 TNetworkMonster^TNetworkEntity{
 .MonsterID%&
 .StartObj%&
@@ -99,6 +100,7 @@ NetSlot^brl.blitz.Object{
 TInventory^brl.linkedlist.TList{
 .IType%&
 -New%()="_bb_TInventory_New"
++Create:TInventory(IType%)="_bb_TInventory_Create"
 }="bb_TInventory"
 TTarget^TEntity{
 -New%()="_bb_TTarget_New"
@@ -117,6 +119,7 @@ MYSQL_FINDPLAYER%(Name$)="bb_MYSQL_FINDPLAYER"
 MYSQL_Check%(Result:pub.mysql.TMySQLResult)="bb_MYSQL_Check"
 UpdateMouse%()="bb_UpdateMouse"
 MouseUp%()="bb_MouseUp"
+CheckMouseControl%()="bb_CheckMouseControl"
 CheckMouse%(x%,y%,width%=0,height%=0)="bb_CheckMouse"
 Dist!(p1:TEntity,p2:TEntity)="bb_Dist"
 DistObj!(p1%,p2%)="bb_DistObj"
@@ -160,12 +163,11 @@ TItemsWindow^TWindow{
 .ScrollY%&
 .CountItems%&
 -New%()="_bb_TItemsWindow_New"
--SetInventory%(i:TInventory)="_bb_TItemsWindow_SetInventory"
++Create:TItemsWindow(itype%,P:TNetworkPlayer)="_bb_TItemsWindow_Create"
 -Draw%()="_bb_TItemsWindow_Draw"
 -DrawItemHint%(itemdrawy%,k:TItem,text$)="_bb_TItemsWindow_DrawItemHint"
 -Resize%()="_bb_TItemsWindow_Resize"
 +CountCharsInString%(Str$)="_bb_TItemsWindow_CountCharsInString"
--CanClick%()="_bb_TItemsWindow_CanClick"
 }="bb_TItemsWindow"
 TWindow^brl.blitz.Object{
 .x%&
@@ -188,6 +190,7 @@ TWindow^brl.blitz.Object{
 -DrawMouseHint%()="_bb_TWindow_DrawMouseHint"
 -Update%()="_bb_TWindow_Update"
 -checkclick%()="_bb_TWindow_checkclick"
+-CanClick%()="_bb_TWindow_CanClick"
 -SetForegroundWindow%()="_bb_TWindow_SetForegroundWindow"
 }="bb_TWindow"
 TManyInventories^brl.linkedlist.TList{
@@ -202,6 +205,9 @@ PlayerName$&=mem:p("bb_PlayerName")
 font%&=mem("bb_font")
 PlayerMesh%&=mem("bb_PlayerMesh")
 MonsterMesh%&=mem("bb_MonsterMesh")
+mouseCameraX%&=mem("bb_mouseCameraX")
+mouseCameraY%&=mem("bb_mouseCameraY")
+cameraTurnSpeed!&=mem:d("bb_cameraTurnSpeed")
 objList:brl.linkedlist.TList&=mem:p("bb_objList")
 objListInit:brl.linkedlist.TList&=mem:p("bb_objListInit")
 objListRemove:brl.linkedlist.TList&=mem:p("bb_objListRemove")
@@ -257,7 +263,6 @@ ImageDir$&=mem:p("bb_ImageDir")
 ModelsDir$&=mem:p("bb_ModelsDir")
 UserConfigDir$&=mem:p("bb_UserConfigDir")
 ItemImg%&[]&=mem:p("bb_ItemImg")
-AllInventories:TManyInventories&=mem:p("bb_AllInventories")
 AllInventoriesWindow:TInventoriesWindow&=mem:p("bb_AllInventoriesWindow")
 menu_btn%&=mem("bb_menu_btn")
 menu_btn_active%&=mem("bb_menu_btn_active")

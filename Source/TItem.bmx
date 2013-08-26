@@ -110,8 +110,5 @@ Type TItem
 End Type
 
 Function _AddFavInventory()
-	Local inv:TInventory = New TInventory
-	inv.IType = TYPE_FAV_INVENTORY
-	Local newWin:TItemsWindow = New TItemsWindow
-	newWin.SetInventory(inv)
+	Local newWin:TItemsWindow = TItemsWindow.Create(TYPE_FAV_INVENTORY, Player)
 End Function

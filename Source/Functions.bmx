@@ -9,6 +9,15 @@ Function ENDGAME()
 	End
 End Function
 
+Function FindMainInventory:TInventory()
+	Local inv:TItemsWindow
+	For inv = EachIn Player.AllInventories
+		If inv.Inventory.IType = TYPE_MAIN_INVENTORY Then
+			Return inv.Inventory
+		End If
+	Next
+End Function
+
 Function CheckServerList:TList()
 	Local list:TList = New TList
 	Local f:TStream = ReadFile(UserConfigDir + "serverlist.txt")
@@ -119,6 +128,38 @@ Function MouseUp()
 	If MouseOldButton = 1 And MouseNewButton = 0 Return 1
 End Function
 
+Function CheckMouseControl()
+	Local AllWindowsCanClick = False
+	Local LocalWindow:TWindow
+	If xMouseHit(xMOUSE_MIDDLE) And isServer = True Then
+		Local spt:TSpawnPoint = TSpawnPoint.Create(1, Rand(2, 5), Player.X, Player.Y, Player.Z)
+	EndIf
+	For LocalWindow = EachIn Windows
+		If LocalWindow.CanClick() Then
+			AllWindowsCanClick = True
+		End If
+	Next
+	If xMouseHit(xMOUSE_LEFT) Then
+		If AllWindowsCanClick Then
+			Player.T.Location()
+			xAnimate(Player.obj, 1)
+		End If
+	End If
+	If xMouseHit(xMOUSE_RIGHT) Then
+		If AllWindowsCanClick Then
+			mouseCameraX = xMouseX()
+			mouseCameraY = xMouseY()
+		End If
+	End If
+	cameraTurnSpeed = -xMouseXSpeed()
+	If xMouseDown(xMOUSE_RIGHT) Then
+		If AllWindowsCanClick Then
+			xTurnEntity(Player.camerapivot, 0, cameraTurnSpeed, 0)
+			xMoveMouse (mouseCameraX, mouseCameraY)
+		End If
+	End If
+End Function
+
 Function CheckMouse(x:Int, y:Int, width:Int = 0, height:Int = 0)
 	If _mx >= x And _mx <= (x + width) And _my >= y And _my <= y + height Then
 		Return True
@@ -132,9 +173,9 @@ Function Dist:Double(p1:TEntity, p2:TEntity)
 End Function
 
 Function DistObj:Double(p1:Int, p2:Int)
-	Return Sqr((xEntityX(p2) - xEntityX(p1)) ^ 2 + (xEntityY(p2) - xEntityY(p1)) ^ 2 + (xEntityZ(p2) - xEntityZ(p1)) ^ 2)
+	'return Sqr((xEntityX(p2) - xEntityX(p1)) ^ 2 + (xEntityY(p2) - xEntityY(p1)) ^ 2 + (xEntityZ(p2) - xEntityZ(p1)) ^ 2)
+	Return xEntityDistance(p1, p2)
 End Function
-
 Function SortWindows()
 	Local list:TList = New TList
 	Local w:TWindow

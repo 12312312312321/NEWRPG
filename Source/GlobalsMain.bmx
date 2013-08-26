@@ -6,6 +6,11 @@ Global font:Int
 'модель игрока
 Global PlayerMesh:Int
 Global MonsterMesh:Int
+'Запоминание координат мыши в момент нажатия правой кнопки
+Global mouseCameraX:Int
+Global mouseCameraY:Int
+'Скорость поворота камеры
+Global cameraTurnSpeed:Double = 0
 'листы
 Global objList:TList = New TList		'сетевые объекты
 Global objListInit:TList = New TList		'сетевые объекты
@@ -82,10 +87,19 @@ Global ImageDir:String = "Data/image/"
 Global ModelsDir:String = "Data/models/"
 Global UserConfigDir:String = "User/config/"
 Global ItemImg[] = [xLoadImage(ImageDir + "item_0.png"), xLoadImage(ImageDir + "item_1.png"), xLoadImage(ImageDir + "item_2.png")]
-Global AllInventories:TManyInventories = New TManyInventories
 Global AllInventoriesWindow:TInventoriesWindow = New TInventoriesWindow
 '================== Images главное меню ========================
 Global menu_btn = xloadimage(ImageDir + "mainmenu_bt_stand.png")
 Global menu_btn_active = xloadimage(ImageDir + "mainmenu_bt_active.png")
 Global Sock:TSocket
+'блендинг
+xSetBlend(FI_ALPHABLEND)
+'шрифт
+font = xLoadFont("Book Antiqua", 12)
+xSetFont(font)
+'load mesh
+PlayerMesh = xLoadAnimMesh(ModelsDir + "batman.b3d")
+MonsterMesh = xLoadMesh(ModelsDir + "skelet.b3d")
+xHideEntity(PlayerMesh)
+xHideEntity(MonsterMesh)
 
