@@ -65,6 +65,8 @@ Global MouseState = 0
 Global MOUSE_NOTHING = 0
 Global MOUSE_MOVING = 1
 Global MOUSE_RESIZING = 2
+Global MOUSE_DRAGDROP = 3
+Global MOUSE_ITEM_DRAG:TItem = Null
 'размер элементов для окон
 Global elementheight = 24
 Global spacewidth = 5

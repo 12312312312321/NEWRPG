@@ -133,7 +133,9 @@ Repeat
 	For LocalWindow = EachIn Windows
 		LocalWindow.Update()
 	Next
-
+	If MOUSE_ITEM_DRAG Then
+		DrawItemPic(MOUSE_ITEM_DRAG, _mx, _my)
+	End If
 	'вывод на экран
 	xFlip()
 Forever

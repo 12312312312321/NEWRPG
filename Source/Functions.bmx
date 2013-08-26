@@ -151,3 +151,33 @@ Function SortWindows()
 	Next
 	Windows = list
 End Function
+
+Function DrawItemPic(drawitem:TItem, drawx:Int, drawy:Int)
+	If drawitem.checkdelete = 0 Then
+		Select drawitem.rare
+			Case ITEM_RARE_NORMAL
+				xColor (0, 0, 0)
+			Case ITEM_RARE_MAGICAL
+				xColor(0, 0, 150)
+			Case ITEM_RARE_RARE
+				xColor(150, 75, 0)
+			Case ITEM_RARE_CRYSTALL
+				xColor(255, 0, 255)
+			Case ITEM_RARE_PERFECT
+				xColor(255, 255, 255)
+		End Select
+	Else
+		xColor (50, 150, 250)
+	End If
+	xRect(drawx, drawy, elementheight, elementheight, True)
+	If drawitem.id = ITEM_PACKET Then
+		xResizeImage(ItemImg[ITEM_PACKET], elementheight, elementheight)
+		xDrawImage(ItemImg[ITEM_PACKET], drawx, drawy)
+	ElseIf drawitem.id = ITEM_HOOD Then
+		xResizeImage(ItemImg[ITEM_HOOD], elementheight, elementheight)
+		xDrawImage(ItemImg[ITEM_HOOD], drawx, drawy)
+	ElseIf drawitem.id = ITEM_FAV_INVENTORY Then
+		xResizeImage(ItemImg[ITEM_FAV_INVENTORY], elementheight, elementheight)
+		xDrawImage(ItemImg[ITEM_FAV_INVENTORY], drawx, drawy)
+	End If
+End Function

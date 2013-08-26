@@ -23,7 +23,12 @@ Type TInventoriesWindow Extends TWindow
 			Local u:Int = (y + elementheight) + coef + spacewidth
 			xDrawImage(ItemImg[ITEM_FAV_INVENTORY], i, u)
 			If CheckMouse(i, u, elementheight, elementheight) Then
-				If xMouseDown(xMOUSE_LEFT) Then inv.hidden = 0
+				If xMouseDown(xMOUSE_LEFT) And MOUSE_ITEM_DRAG = Null Then
+					inv.hidden = 0
+				ElseIf xMouseDown(xMOUSE_LEFT) And MOUSE_ITEM_DRAG Then
+					inv.Inventory.AddLast(MOUSE_ITEM_DRAG)
+					MOUSE_ITEM_DRAG = Null
+				End If
 				DrawInvHint(inv)
 			End If
 			j = j + 1

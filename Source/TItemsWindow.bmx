@@ -48,33 +48,7 @@ Type TItemsWindow Extends TWindow
 			If ite_mymin > ite_my Then ite_mymin = ite_my
 			If ite_mymax < ite_my Then ite_mymax = ite_my
 			If ite_my > y + elementheight And ite_my < y + height - elementheight * 2 Then
-				If k.checkdelete = 0 Then
-					Select k.rare
-						Case ITEM_RARE_NORMAL
-							xColor (0, 0, 0)
-						Case ITEM_RARE_MAGICAL
-							xColor(0, 0, 150)
-						Case ITEM_RARE_RARE
-							xColor(150, 75, 0)
-						Case ITEM_RARE_CRYSTALL
-							xColor(255, 0, 255)
-						Case ITEM_RARE_PERFECT
-							xColor(255, 255, 255)
-					End Select
-				Else
-					xColor (50, 150, 250)
-				End If
-				xRect(ite_mx, ite_my, elementheight, elementheight, true)
-				If k.id = ITEM_PACKET Then
-					xResizeImage(ItemImg[ITEM_PACKET], elementheight, elementheight)
-					xDrawImage(ItemImg[ITEM_PACKET], ite_mx, ite_my)
-				ElseIf k.id = ITEM_HOOD Then
-					xResizeImage(ItemImg[ITEM_HOOD], elementheight, elementheight)
-					xDrawImage(ItemImg[ITEM_HOOD], ite_mx, ite_my)
-				ElseIf k.id = ITEM_FAV_INVENTORY Then
-					xResizeImage(ItemImg[ITEM_FAV_INVENTORY], elementheight, elementheight)
-					xDrawImage(ItemImg[ITEM_FAV_INVENTORY], ite_mx, ite_my)
-				End If
+				DrawItemPic(k, ite_mx, ite_my)
 			EndIf
 			i = i + 1
 		Next
@@ -139,7 +113,11 @@ Type TItemsWindow Extends TWindow
 					k.checkdelete = 1
 				ElseIf xMouseDown(xMOUSE_LEFT) And Not xKeyDown(xKEY_LSHIFT) And k.checkdelete = 1 Then
 					k.checkdelete = 0
+				ElseIf xMouseDown(xMOUSE_LEFT) And Not xKeyDown(xKEY_LSHIFT) And k.checkdelete = 0 And MOUSE_ITEM_DRAG = Null And MouseState = MOUSE_NOTHING Then
+					MOUSE_ITEM_DRAG = k
+					Inventory.Remove(k)
 				End If
+				
 				If xMouseDown(xMOUSE_RIGHT) And k.checkdelete = 0 Then
 					If k.id = ITEM_PACKET Then
 						k.PacketExtract(Inventory)

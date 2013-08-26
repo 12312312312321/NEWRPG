@@ -121,6 +121,7 @@ CheckMouse%(x%,y%,width%=0,height%=0)="bb_CheckMouse"
 Dist!(p1:TEntity,p2:TEntity)="bb_Dist"
 DistObj!(p1%,p2%)="bb_DistObj"
 SortWindows%()="bb_SortWindows"
+DrawItemPic%(drawitem:TItem,drawx%,drawy%)="bb_DrawItemPic"
 TSpawnPoint^TEntity{
 .MonsterID%&
 .MonsterCount%&
@@ -248,6 +249,8 @@ MouseState%&=mem("bb_MouseState")
 MOUSE_NOTHING%&=mem("bb_MOUSE_NOTHING")
 MOUSE_MOVING%&=mem("bb_MOUSE_MOVING")
 MOUSE_RESIZING%&=mem("bb_MOUSE_RESIZING")
+MOUSE_DRAGDROP%&=mem("bb_MOUSE_DRAGDROP")
+MOUSE_ITEM_DRAG:TItem&=mem:p("bb_MOUSE_ITEM_DRAG")
 elementheight%&=mem("bb_elementheight")
 spacewidth%&=mem("bb_spacewidth")
 ImageDir$&=mem:p("bb_ImageDir")
