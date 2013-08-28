@@ -11,6 +11,7 @@ Type TNetworkMonster Extends TNetworkEntity
 	Field AgroRange:Double
 	Field atkRange:Double
 	Field UniqueName:Int
+	Field HP:Double
 	Method New()
 		obj = xCopyMesh(MonsterMesh)
 		xEntityColor(obj, 255, 0, 255)
@@ -22,6 +23,7 @@ Type TNetworkMonster Extends TNetworkEntity
 		StartObj = xCreatePivot()
 		AgroRange = 5.0
 		atkRange = 1.0
+		HP = 100
 		UniqueName = NetMonstersList.Count()
 		NetMonstersList.AddLast(Self)
 	End Method

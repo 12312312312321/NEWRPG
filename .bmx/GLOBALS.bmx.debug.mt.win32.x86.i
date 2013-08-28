@@ -46,7 +46,6 @@ TNetworkPlayer^TNetworkEntity{
 -MoveToTarget%()="_bb_TNetworkPlayer_MoveToTarget"
 -Debug1%()="_bb_TNetworkPlayer_Debug1"
 }="bb_TNetworkPlayer"
-FindMainInventory:TInventory()="bb_FindMainInventory"
 TNetworkMonster^TNetworkEntity{
 .MonsterID%&
 .StartObj%&
@@ -55,6 +54,7 @@ TNetworkMonster^TNetworkEntity{
 .AgroRange!&
 .atkRange!&
 .UniqueName%&
+.HP!&
 -New%()="_bb_TNetworkMonster_New"
 +Create:TNetworkMonster(isNet%=0,NetObject:brl.gnet.TGNetObject="bbNullObject")="_bb_TNetworkMonster_Create"
 -Remove%()="_bb_TNetworkMonster_Remove"
@@ -103,10 +103,12 @@ TInventory^brl.linkedlist.TList{
 +Create:TInventory(IType%)="_bb_TInventory_Create"
 }="bb_TInventory"
 TTarget^TEntity{
+.Monster:TNetworkMonster&
 -New%()="_bb_TTarget_New"
 -Location%()="_bb_TTarget_Location"
 }="bb_TTarget"
 ENDGAME%()="bb_ENDGAME"
+FindMainInventory:TInventory()="bb_FindMainInventory"
 CheckServerList:brl.linkedlist.TList()="bb_CheckServerList"
 TryConnect%(s$)="bb_TryConnect"
 LoadPlayerName%()="bb_LoadPlayerName"

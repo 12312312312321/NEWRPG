@@ -178,11 +178,19 @@ Function UpdateFromGnet()
 			If DistObj(NetMonster.obj, Player.obj) < 20 Then
 				NetMonster.UpdatePositionFromNET()
 			End If
+		'===================== Получение "сообщений" ===============
 		ElseIf remoteObj.GetInt(NS.TypeEntity) = TYPE_GNETMESSAGE Then
 			If Player.NetID.GetString(NS.PlayerName) = remoteObj.GetString(NS.messageObjectId) Then
 				Player.HP = remoteObj.GetFloat(NS.messageObjectHp)
 				remoteObj.Close()
 			End If
+			For NetMonster = EachIn NetMonstersList
+				If NetMonster.NetID.GetInt(NS.MonsterUniqueName) = Int(remoteObj.GetString(NS.messageObjectId)) Then
+					NetMonster.HP = remoteObj.GetFloat(NS.messageObjectHp)
+					xEntityColor(	NetMonster.obj,255,255,255)
+					Exit
+				End If
+			Next
 		Else
 			Notify("Unknown Packet.")
 			ENDGAME()
